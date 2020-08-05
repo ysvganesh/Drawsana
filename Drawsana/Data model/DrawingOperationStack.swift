@@ -6,6 +6,8 @@
 //  Copyright © 2018 Asana. All rights reserved.
 //
 
+import Foundation
+
 /**
  Store and manage the undo/redo stack for a drawing
  */
@@ -57,7 +59,7 @@ public class DrawingOperationStack {
     delegate?.drawingOperationStackDidRedo(self, operation: operation)
   }
 
-  /// Clear the redo Stack
+  /// Clear the redo stack
   @objc public func clearRedoStack() {
     redoStack = []
   }
@@ -85,6 +87,6 @@ public protocol DrawingOperation {
   func apply(drawing: Drawing)
   func revert(drawing: Drawing)
 }
-extension DrawingOperation {
+public extension DrawingOperation {
   func shouldAdd(to operationStack: DrawingOperationStack) -> Bool { return true }
 }
